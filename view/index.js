@@ -13,7 +13,7 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
 util.inherits(ViewGenerator, yeoman.generators.NamedBase);
 
 ViewGenerator.prototype.files = function files() {
-  var name = this._.slugify(this.name);
+  var name = this._.underscored(this.name);
   this.template('_view.js', 'app/views/'+name+'.js');
   this.copy('view.hbs', 'app/templates/'+name+'.hbs');
 };

@@ -1,7 +1,9 @@
-var Base = require('./base');
+var <% _.classify(this.name) %> = require('../models/<% _.underscored(this.name) %>')
+  , Base = require('./base');
 
 module.exports = Base.extend({
-  urlRoot: '/<% _.slugify(this.name) %>s'
+  model: '<% _.classify(this.name) %>',
+  urlRoot: '/<% _.underscored(this.name) %>s'
 });
 
 module.exports.id = <% _.classify(this.name) %>;
