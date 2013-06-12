@@ -1,7 +1,7 @@
-var BaseView = require('./base_view');
+var BaseView = require('../base_view');
 
 module.exports = BaseView.extend({
 
 });
 
-module.exports.id = <% _.classify(this.name) %>;
+module.exports.id = "<%= name %>";

@@ -1,4 +1,4 @@
-var <% _.classify(this.name) %> = require('../models/<% _.underscored(this.name) %>')
+var <%= _.classify(this.name) %> = require('../models/<%= _.underscored(this.name) %>')
   , Base = require('./base');
 
 module.exports = Base.extend({
@@ -6,4 +6,4 @@ module.exports = Base.extend({
   urlRoot: '/<% _.underscored(this.name) %>s'
 });
 
-module.exports.id = <% _.classify(this.name) %>;
+module.exports.id = "<%= _.classify(name) %>s";

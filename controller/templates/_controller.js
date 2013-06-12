@@ -7,6 +7,6 @@ module.exports = {
       // callback(err, '<% _.underscored(this.name) %>_index_view', result);
     // });
 
-    callback(err, '<% _.underscored(this.name) %>_index_view', result);
+    callback();
   }
 };
