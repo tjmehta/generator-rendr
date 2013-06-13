@@ -4,4 +4,4 @@ module.exports = BaseView.extend({
 
 });
 
-module.exports.id = <% _.classify(name) %>;
+module.exports.id = "<%= _.classify(name) %>";

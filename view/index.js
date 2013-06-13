@@ -3,6 +3,7 @@ var util = require('util');
 var yeoman = require('yeoman-generator');
 var path = require('path');
 var fs = require('fs');
+var exec = require('child_process').exec;
 
 var ViewGenerator = module.exports = function ViewGenerator(args, options, config) {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -13,6 +14,33 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
 };
 
 util.inherits(ViewGenerator, yeoman.generators.NamedBase);
+
+ViewGenerator.prototype.generateControllerIfNotExists = function () {
+  var cb = this.async();
+  var underscoredName = this._.underscored(this.name);
+  var nameSplit = underscoredName.split('_');
+  var filename = nameSplit.pop();
+  var controllerName = nameSplit[0];
+  var keyname = filename;
+  var controllerFilename = controllerName + '_controller.js';
+  var controllerPath = path.join(process.cwd(), 'app', 'controllers', controllerFilename);
+
+  if (!fs.existsSync(controllerPath)) {
+    console.log('Generating ', controllerName, 'controller');
+    var controllerGenCmd = 'yo rendr:controller '+controllerName;
+    exec(controllerGenCmd, function (err, stdout, stderr) {
+      if (err) {
+        console.log("Command failed: '%s' with error %s", controllerGenCmd, err.message);
+      }
+      console.log(stderr);
+      console.log(stdout);
+      cb();
+    });
+  }
+  else {
+    cb();
+  }
+};
 
 ViewGenerator.prototype.files = function files() {
   var underscoredName = this._.underscored(this.name);
@@ -32,19 +60,10 @@ ViewGenerator.prototype.files = function files() {
   this.copy('view.hbs', templatePath);
 
   // create controller if it doens't exist
-  var controllerName = controllerName + '_controller.js';
-  var controllerPath = path.join(process.cwd(), 'app', 'controllers', controllerName);
-
-  if (!fs.existsSync(controllerPath)) {
-    this.hookFor('rendr:controller', {
-      args: [controllerName]
-    });
-  }
+  var controllerFilename = controllerName + '_controller.js';
+  var controllerPath = path.join(process.cwd(), 'app', 'controllers', controllerFilename);
   var controller = require(controllerPath.replace(/[.]js$/, ''));
-  if (controller[keyname]) {
-    console.log('Controller logic not generated: already exists.');
-  }
-  else {
+  if (!controller[keyname]) {
     // var controllerRelPath = path.join('.', 'app', 'controllers', controllerName);
     // var controller = require(controllerRelPath);
     var controllerStr = this.readFileAsString(controllerPath);
