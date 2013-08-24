@@ -1,6 +1,6 @@
 {
   "name": "generator-rendr",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "A generator for Yeoman",
   "keywords": [
     "yeoman-generator"
