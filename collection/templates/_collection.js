@@ -1,5 +1,4 @@
-var <%= _.classify(name) %> = require('../models/<%= _.underscored(name) %>')
-  , Base = require('./base')
+var Base = require('./base')
   , <%= _.classify(modelName) %> = require('../models/<%= _.underscored(modelName) %>');
 
 module.exports = Base.extend({
