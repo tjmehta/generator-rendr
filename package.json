@@ -1,21 +1,19 @@
 {
   "name": "generator-rendr",
   "version": "0.0.4",
-  "description": "A generator for Yeoman",
+  "description": "A code generator for airbnb rendr",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator, rendr, airbnb rendr, code generator for rendr, yo generator"
   ],
-  "homepage": "https://github.com/tjmehta/generator-run",
-  "bugs": "https://github.com/tjmehta/generator-run/issues",
-  "author": {
-    "name": "Tejesh Mehta",
-    "email": "",
-    "url": "https://github.com/tjmehta"
+  "homepage": "https://github.com/tjmehta/generator-rendr",
+  "bugs": {
+    "url": "https://github.com/tjmehta/generator-rendr/issues"
   },
+  "author": "Tejesh Mehta (https://github.com/tjmehta)",
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/tjmehta/generator-run.git"
+    "url": "git://github.com/tjmehta/generator-rendr.git"
   },
   "scripts": {
     "test": "mocha"
@@ -34,5 +32,6 @@
     {
       "type": "MIT"
     }
-  ]
+  ],
+  "license": "MIT"
 }
