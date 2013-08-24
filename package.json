@@ -1,6 +1,6 @@
 {
   "name": "generator-rendr",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A code generator for airbnb rendr",
   "keywords": [
     "yeoman-generator, rendr, airbnb rendr, code generator for rendr, yo generator"
