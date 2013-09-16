@@ -75,6 +75,7 @@ ViewGenerator.prototype.files = function files() {
         string = string.slice(0, indexOfParen);
         i++;
       }
+      return indexOfParen;
     })();
     if (~indexToInsert) {
       indexToInsert++;
@@ -88,7 +89,7 @@ ViewGenerator.prototype.files = function files() {
         "    //   callback(err, '<% _.underscored(this.name) %>_index_view', result);",
         "    // });",
         '    callback();',
-        '  }'
+        '  }\n'
       ].join('\n');
 
       var newControllerText = controllerStr.slice(0, indexToInsert)
