@@ -71,7 +71,6 @@ ViewGenerator.prototype.files = function files() {
       var string = controllerStr, i = 0, indexOfParen = 0;
       while (i < 2) {
         indexOfParen = string.lastIndexOf('}');
-        console.log(indexOfParen);
         if (!~indexOfParen) return -1;
         string = string.slice(0, indexOfParen);
         i++;
