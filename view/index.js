@@ -67,20 +67,18 @@ ViewGenerator.prototype.files = function files() {
     // var controllerRelPath = path.join('.', 'app', 'controllers', controllerName);
     // var controller = require(controllerRelPath);
     var controllerStr = this.readFileAsString(controllerPath);
-    var parenIndices = [];
-    (function findLastTwoParens (indices) {
-      var twoCount = [0,1];
-      var string = controllerStr;
-      twoCount.forEach(function () {
-        var lastParenMath = string.match(/[ ]*\}[ \n;]*$/);
-        if (lastParenMath) {
-          indices.unshift(lastParenMath.index);
-        }
-        string = string.slice(0, lastParenMath.index-1);
-      });
-    }(parenIndices));
-    if (parenIndices.length === 2) {
-      var indexToInsert = parenIndices[0]+3; // 2nd to last paren + 1 char
+    var indexToInsert = (function () {
+      var string = controllerStr, i = 0, indexOfParen = 0;
+      while (i < 2) {
+        indexOfParen = string.lastIndexOf('}');
+        console.log(indexOfParen);
+        if (!~indexOfParen) return -1;
+        string = string.slice(0, indexOfParen);
+        i++;
+      }
+    })();
+    if (~indexToInsert) {
+      indexToInsert++;
       var textToInsert = [
         ',',
         '  '+keyname+': function (params, callback) {',
